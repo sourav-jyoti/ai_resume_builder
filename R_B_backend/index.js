@@ -19,13 +19,17 @@ app.use(cors({
 app.use(express.json());
 
 
-mongoose.connect(process.env.Mongo_url);
-//write conditions if failed to connect db error 
+mongoose.connect(process.env.Mongo_url)
+  .then(() => console.log("✅ MongoDB connected"))                  //conditions if failed to connect db error 
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+
 
 
 //router endpoints
 
 //a new resume is created using title and time of creation
+
 app.post("/user/resumes", async function (req, res) {
   try {
     const { title } = req.body;
