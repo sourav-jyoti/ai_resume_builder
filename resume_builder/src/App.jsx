@@ -8,7 +8,6 @@ import Dashboard from "./pages/Dashboard";
 import EditResume from "./pages/[resumeid]/EditResume";
 
 
-
 function App() {
 
   return (
