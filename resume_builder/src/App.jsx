@@ -1,5 +1,7 @@
 import './App.css'
-import { BrowserRouter, Route, Outlet, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Outlet, Routes } from 'react-router-dom';
+import { Toaster } from "@/components/ui/sonner"
+
 
 //importing the components
 import Header from "./pages/Header";
@@ -30,6 +32,7 @@ function Layout(){
     <>
       <Header/>
       <Outlet/>
+      <Toaster/>
     </>
   )
 }

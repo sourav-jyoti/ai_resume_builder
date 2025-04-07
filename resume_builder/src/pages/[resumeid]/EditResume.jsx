@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+//import { Toaster } from "sonner";
 
 import FormSection from "../../components/ui/FormSection";
 import ResumePreview from "../../components/ui/ResumePreview";
@@ -43,6 +44,7 @@ function EditResume() {
       <ResumeProvider>
         <FormSection />
         <ResumePreview />
+        {/* <Toaster position="top-right" richColors /> //not needed as i have added Toaster in app.jsx directly in the root*/}
       </ResumeProvider>
     </div>
   );

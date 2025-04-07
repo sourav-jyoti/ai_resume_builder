@@ -25,3 +25,7 @@ export default function EducationalPreview() {
     </div>
   )
 }
+
+/**
+ {resumedata?.education?.map((education,index)=>(..) // why ? is used otherwise gives error
+ */
