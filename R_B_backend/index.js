@@ -65,7 +65,7 @@ app.put("/user/resumes/:id", async function (req, res) {
   try {
     const { firstName, lastName, jobTitle, address, phone, email, themeColor } = req.body;
 
-    await ResumeModel.create({ firstName,lastName,jobTitle,address,phone,email,themeColor });
+    
 
     // Check if the resume exists first
     const existingResume = await ResumeModel.findById(req.params.id);
@@ -105,3 +105,19 @@ app.listen(3000);
 
 
 
+/**write line 22-24 in await style
+ 
+  async function connectToDatabase() {
+  try {
+    await mongoose.connect(process.env.Mongo_url);
+    console.log("✅ MongoDB connected");
+  } catch (err) {
+    console.error("❌ MongoDB connection error:", err);
+  }
+}
+
+connectToDatabase();
+
+
+
+ */

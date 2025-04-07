@@ -12,7 +12,7 @@ export default function ExperiencePreview() {
         </h2>
         <hr style={{borderColor:resumedata?.themeColor}} />
 
-        {resumedata?.experience.map((experience,index)=>(
+        {resumedata?.experience?.map((experience,index)=>(
           <div key={index} className='my-5'>
           <h2 className='text-sm font-bold' style={{ color:resumedata?.themeColor }}>{experience?.title}</h2>
           <h2 className='text-xs flex justify-between'>

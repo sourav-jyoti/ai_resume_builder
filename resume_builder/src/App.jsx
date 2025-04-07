@@ -16,10 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route index element={<Dashboard/>} />
-            
-            
             <Route path=":resumeid/EditResume" element={<EditResume />} />{/* Corrected Dynamic Route */}
-
             <Route path="*" element={<Error/>} />
           </Route>
         </Routes>
