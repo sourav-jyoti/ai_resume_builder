@@ -16,15 +16,7 @@ function PersonalDetail({ setEnableNext }) {
   const uploaddata = async () => {
     setloading(true);
     try {
-      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, {
-        firstName: resumedata.firstName,
-        lastName: resumedata.lastName,
-        jobTitle: resumedata.jobTitle,
-        address: resumedata.address,
-        phone: resumedata.phone,
-        email: resumedata.email,
-        themeColor: "red",
-      });
+      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, resumedata);
 
       if(response.status === 200){
         setloading(false);

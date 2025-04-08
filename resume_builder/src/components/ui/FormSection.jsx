@@ -29,8 +29,8 @@ function FormSection() {
 
       {sectionindex == 1 && <PersonalDetail setEnableNext={setEnableNext}/>}
       {sectionindex == 2 &&<Summery setEnableNext={setEnableNext}/>}
-      {sectionindex == 3 && <Educational setEnableNext={setEnableNext}/>}
-      {sectionindex == 4 &&<Experience setEnableNext={setEnableNext}/>}
+      {sectionindex == 3 &&<Experience setEnableNext={setEnableNext}/>}
+      {sectionindex == 4 && <Educational setEnableNext={setEnableNext}/>}
       {sectionindex == 5 &&<Skills />}
 
     </div>

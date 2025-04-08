@@ -20,8 +20,8 @@ app.use(express.json());
 
 
 mongoose.connect(process.env.Mongo_url)
-  .then(() => console.log("✅ MongoDB connected"))                  //conditions if failed to connect db error 
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log("MongoDB connected"))                  //conditions if failed to connect db error 
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 
 
@@ -63,7 +63,7 @@ app.get("/user/resumes/:id", async (req, res) => {
 //updated the resume with data
 app.put("/user/resumes/:id", async function (req, res) {
   try {
-    const { firstName, lastName, jobTitle, address, phone, email, themeColor,summery } = req.body;
+    const updateData = req.body;
 
     
 
@@ -76,7 +76,7 @@ app.put("/user/resumes/:id", async function (req, res) {
     // Update the existing resume
     const updatedResume = await ResumeModel.findByIdAndUpdate(
       req.params.id,
-      { firstName, lastName, jobTitle, address, phone, email, themeColor,summery },
+      { $set: updateData},//dynamically adds key value pair based on the frontend data
       { new: true }
     );
 
