@@ -40,6 +40,11 @@ const ResumeSchema = new Schema({
     trim: true,
     default: "red",
   },
+  summery:{
+    type: String,
+    trim: true,
+    default:" ",
+  }
 });
 
 

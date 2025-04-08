@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/Button'
 import { useParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from "sonner"
-
-
 import axios from 'axios';
 
 function PersonalDetail({ setEnableNext }) {

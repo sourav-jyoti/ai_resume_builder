@@ -63,7 +63,7 @@ app.get("/user/resumes/:id", async (req, res) => {
 //updated the resume with data
 app.put("/user/resumes/:id", async function (req, res) {
   try {
-    const { firstName, lastName, jobTitle, address, phone, email, themeColor } = req.body;
+    const { firstName, lastName, jobTitle, address, phone, email, themeColor,summery } = req.body;
 
     
 
@@ -76,7 +76,7 @@ app.put("/user/resumes/:id", async function (req, res) {
     // Update the existing resume
     const updatedResume = await ResumeModel.findByIdAndUpdate(
       req.params.id,
-      { firstName, lastName, jobTitle, address, phone, email, themeColor },
+      { firstName, lastName, jobTitle, address, phone, email, themeColor,summery },
       { new: true }
     );
 
