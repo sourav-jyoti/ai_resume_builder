@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 
 
 const ResumeSchema = new Schema({
+  //personnel detail 
   title: {
     type: String,
     required: true,
@@ -40,11 +41,49 @@ const ResumeSchema = new Schema({
     trim: true,
     default: "red",
   },
+
+  //summery
   summery:{
     type: String,
     trim: true,
     default:" ",
-  }
+  },
+
+  //experience
+  experience: [
+    {
+      id: { type: Number },
+      title: { type: String },
+      companyName: { type: String },
+      city: { type: String },
+      state: { type: String },
+      startDate: { type: String },
+      endDate: { type: String },
+      currentlyWorking: { type: Boolean },
+      workSummery: { type: String }
+    }
+  ],
+
+  //education
+
+  education: [
+    {
+      id: { type: Number },
+      universityName: { type: String },
+      startDate: { type: String },
+      endDate: { type: String },
+      degree: { type: String },
+      major: { type: String },
+      description: { type: String }
+    }
+  ],
+
+  //skills
+  skill: [
+    {
+      name :{type:String},
+    }
+  ]
 });
 
 
@@ -55,3 +94,11 @@ const ResumeModel = mongoose.model('Resume', ResumeSchema);
 
 module.exports = { ResumeModel: ResumeModel };
 
+{/**
+When to use trim: true:
+It automatically removes extra spaces at the beginning and end of strings when saving to MongoDB.
+Use it for fields that:
+Store user input (e.g. name, email, phone, address)
+Are used for searching/filtering
+Should not have leading/trailing spaces
+*/}
