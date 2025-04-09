@@ -77,7 +77,7 @@ const GenerateAiSummery = async()=>{
                 {/* above in the button we mentioned type button otherwise on clicking submit button will be called */}
             </div>
            
-            <Textarea className="mt-5" required defaultValue={resumedata?.summery}  onChange={(e)=>setsummery(e.target.value)}/>
+            <Textarea className="mt-5" required value={summery ?? resumedata?.summery ?? ''}  onChange={(e)=>setsummery(e.target.value)}/>
 
             <div className='mt-2 flex justify-end'>
               <Button type="submit" >
@@ -90,3 +90,9 @@ const GenerateAiSummery = async()=>{
     </div>
   )
 }
+
+{/**
+<Textarea className="mt-5" required value={summery ?? resumedata?.summery ?? ''}  onChange={(e)=>setsummery(e.target.value)}/>
+//value={summery ?? resumedata?.summery ?? ''} ->//responsible for showing the latest update of the summery like generating using ai before we made it deafult but it shows only the initial value
+//onChange={(e)=>setsummery(e.target.value) ->//if we change anything in the text area by ourselves than it update setsummery
+  */}
