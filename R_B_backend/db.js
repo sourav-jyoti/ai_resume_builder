@@ -49,26 +49,27 @@ const ResumeSchema = new Schema({
     default:" ",
   },
 
-  //experience
+  //db will have multiple experience
   experience: [
     {
-      id: { type: Number },
+      
       title: { type: String },
       companyName: { type: String },
       city: { type: String },
       state: { type: String },
       startDate: { type: String },
       endDate: { type: String },
-      currentlyWorking: { type: Boolean },
+      projectName:{ type:String},
+      //currentlyWorking: { type: Boolean },//later upadate in Experience.jsx when false show end date when true don't show end date
       workSummery: { type: String }
     }
   ],
 
-  //education
+  //db will have multiple education
 
   education: [
     {
-      id: { type: Number },
+      
       universityName: { type: String },
       startDate: { type: String },
       endDate: { type: String },

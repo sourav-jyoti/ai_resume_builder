@@ -72,8 +72,6 @@ app.put("/user/resumes/:id", async function (req, res) {
   try {
     const updateData = req.body;
 
-    
-
     // Check if the resume exists first
     const existingResume = await ResumeModel.findById(req.params.id);
     if (!existingResume) {
