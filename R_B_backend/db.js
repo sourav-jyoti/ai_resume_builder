@@ -79,11 +79,8 @@ const ResumeSchema = new Schema({
   ],
 
   //skills
-  skill: [
-    {
-      name :{type:String},
-    }
-  ]
+  skills: {type:String}//data is in html <li><ul> format
+  
 });
 
 
