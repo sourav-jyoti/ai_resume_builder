@@ -135,7 +135,7 @@ export default Skills
  
   */
 
-    /**
-     * in the skills.jsx when we enter something in the text area the html format gets disrupted
-     */
+  /**
+   * in the skills.jsx when we enter something in the text area the html format gets disrupted
+   */
 }

@@ -1,22 +1,25 @@
-import React from 'react'
-import { Link} from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Resumecard  ({resume}) {
+function Resumecard({ resume }) {
   return (
+    <Link to={`/${resume._id}/EditResume`}>
+      <div className="group rounded-2xl overflow-hidden shadow hover:shadow-lg transition-shadow bg-white h-[280px] w-[200px] flex flex-col justify-between">
+        
+        {/* Card Image / Header */}
+        <div className="h-3/5 bg-gradient-to-br from-indigo-300 to-indigo-500 flex items-center justify-center">
+          <span className="text-white text-5xl font-bold">
+            {resume?.title?.charAt(0).toUpperCase() || 'R'}
+          </span>
+        </div>
 
-    <Link to ={"/" + resume._id +"/EditResume"}>
-    <div>
-        <div className='p-14 py-24 border items-center flex justify-center bg-secondary rounded-lg h-[280px] w-[200px] hover:scale-105 transition-all hover:shadow-md'>
-              <div className='flex items-center justify-center h-[180px] '>
-                {/* Add an image if required */}
-              </div>
+        {/* Card Footer */}
+        <div className="h-2/5 p-4 bg-white">
+          <h2 className="text-base font-semibold text-gray-800 truncate">Title: {resume?.title}</h2>
         </div>
-        <div className='border p-3 flex justify-between  text-black rounded-b-lg shadow-lg'>
-          <h2 className='text-sm'>{resume?.title}</h2>
-        </div>
-    </div>
+      </div>
     </Link>
-  ) 
+  );
 }
 
-export default Resumecard
+export default Resumecard;

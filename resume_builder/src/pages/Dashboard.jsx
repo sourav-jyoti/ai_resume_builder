@@ -7,7 +7,7 @@ import Resumecard from '../components/ui/resumecard';
 
 function Dashboard() {
 
-  const [resumes, setresumes] = useState([]);//emoty array
+  const [resumes, setresumes] = useState([]);//initial empty array
 
   useEffect(() => {
 
@@ -27,17 +27,11 @@ function Dashboard() {
   
 
   return (
-    <div className='p-10 px-20'>
-      <h2 className='font-bold text-3xl'>My Resumes</h2>
-      <div className='grid grid-cols-2 mt-10'>
+    <div className="p-10 px-20">
+      <h2 className="font-bold text-3xl mb-8">My Resumes</h2>
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <AddResume />
-        
-        {/* //pass the data to resumecard as props
-
-        //iterate to every data and print as many resumecard as many unique resumes present .map() iterates over the response array and renders a component for each item dynamically.
-
-        // key is used to uniquely identify each resume*/}
-
+        {/* */}
         {resumes.map((resume)=>(
           <Resumecard key={resume._id} resume={resume} />
         ))}
@@ -45,7 +39,13 @@ function Dashboard() {
       </div>
 
     </div>
-  )
+  );
 }
 
 export default Dashboard
+
+{/* //pass the data to resumecard as props
+
+        //iterate to every data and print as many resumecard as many unique resumes present .map() iterates over the response array and renders a component for each item dynamically.
+
+        // key is used to uniquely identify each resume*/}
