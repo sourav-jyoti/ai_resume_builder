@@ -19,9 +19,16 @@ app.use(cors({
 app.use(express.json());
 
 
-mongoose.connect(process.env.Mongo_url)
-  .then(() => console.log("MongoDB connected"))                  //conditions if failed to connect db error 
-  .catch((err) => console.error("MongoDB connection error:", err));
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(process.env.Mongo_url);
+    console.log(" MongoDB connected");
+  } catch (err) {
+    console.error(" MongoDB connection error:", err);
+  }
+}
+
+connectToDatabase();
 
 
 
@@ -105,18 +112,14 @@ app.listen(3000);
 
 
 
-/**write line 22-24 in await style
+/**write line 22-24 in vanilla style
  
-  async function connectToDatabase() {
-  try {
-    await mongoose.connect(process.env.Mongo_url);
-    console.log("✅ MongoDB connected");
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-  }
-}
+mongoose.connect(process.env.Mongo_url)
+  .then(() => console.log("MongoDB connected"))                  //conditions if failed to connect db error 
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-connectToDatabase();
+
+
 
 
 
