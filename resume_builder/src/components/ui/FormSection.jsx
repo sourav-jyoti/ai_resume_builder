@@ -22,7 +22,7 @@ function FormSection() {
 
           {sectionindex>1 && <Button onClick={()=>setsectionindex(curr => curr - 1)} >  <ArrowLeft />Prev</Button>}{/**1 */}
 
-          {sectionindex<5 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>}
+          {sectionindex<5 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>} {/**makes sure the next button is not vissible in the last page */}
           
         </div>
       </div>
