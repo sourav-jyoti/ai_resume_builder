@@ -64,16 +64,53 @@ function Skills() {
       `;
     }).join("\n\n");
 
-    const prompt = `Extract  relevant 4-4 tech skills based on the experience the format of the data is give below.
-                    Only output a clean HTML list using <ul> and <li> tags — no backticks, no code blocks, no explanation, no formatting hints, and ensure the output does not end with "\`\`\`html" or "\`\`\`".
-                    ${formattedExperience}
-                    condition : include tech related skills 
-                    condition : list should in the following format 
-                    programmin lang = add 3 hypothetical language , databases = add 3 db lang,
-                    any other category as you find relevant you are free to add hypothetical categories`;
+    const prompt = `Analyze the experience data provided below. Extract relevant technical skills.
+
+    Experience Data:
+    ${formattedExperience}
+    
+    **CRITICAL OUTPUT REQUIREMENTS:**
+    1.  Generate RAW HTML source code for a list.
+    2.  The entire response MUST start *exactly* with \`<ul>\` and end *exactly* with \`</ul>\`. NO characters before or after.
+    3.  Categorize skills inside \`<li>\` tags (e.g., <li>Category: Skill1, Skill2</li>).
+    4.  DO NOT include ANY markdown fences (\`\`\`html or \`\`\`), comments, explanations, apologies, or any text other than the raw HTML list itself. Your output must be *pure* HTML source.
+    
+    Example of **CORRECT** raw output format:
+    <ul><li>Category1: SkillA</li><li>Category2: SkillB, SkillC</li></ul>
+    
+    Example of **INCORRECT** output:
+    \`\`\`html
+    <ul><li>Category1: SkillA</li></ul>
+    \`\`\`
+    Do NOT output anything like the incorrect example. Output ONLY the raw HTML like the correct example.`;
+
     const result = await chatSession.sendMessage(prompt);
     console.log(result.response.text())
-    setskills(result.response.text());
+
+    let rawText = result.response.text();
+
+    // --- Start Cleanup ---
+    let cleanedHtml = rawText.trim(); // Remove leading/trailing whitespace
+
+    // Remove potential markdown fences
+    if (cleanedHtml.startsWith("```html")) {
+      cleanedHtml = cleanedHtml.substring(7); // Remove ```html
+      // Potentially remove the newline after the opening fence too
+      if (cleanedHtml.startsWith('\n')) {
+        cleanedHtml = cleanedHtml.substring(1);
+      }
+    }
+    if (cleanedHtml.endsWith("```")) {
+      cleanedHtml = cleanedHtml.substring(0, cleanedHtml.length - 3); // Remove ```
+      // Potentially remove the newline before the closing fence too
+      if (cleanedHtml.endsWith('\n')) {
+        cleanedHtml = cleanedHtml.substring(0, cleanedHtml.length - 1);
+      }
+    }
+
+    cleanedHtml = cleanedHtml.trim(); // Trim again after potential fence removal
+
+    setskills(cleanedHtml);
     setloading(false);
   }
 

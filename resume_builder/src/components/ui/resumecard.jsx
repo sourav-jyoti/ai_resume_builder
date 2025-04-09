@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Resumecard({ resume }) {
   return (
     <Link to={`/${resume._id}/EditResume`}>
-      <div className="group rounded-2xl overflow-hidden shadow hover:shadow-lg transition-shadow bg-white h-[280px] w-[200px] flex flex-col justify-between">
+      <div className="group rounded-2xl overflow-hidden shadow hover:scale-105 transition-all hover:shadow-md  bg-white h-[280px] w-[200px] flex flex-col justify-between">
         
         {/* Card Image / Header */}
         <div className="h-3/5 bg-gradient-to-br from-indigo-300 to-indigo-500 flex items-center justify-center">

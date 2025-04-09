@@ -9,12 +9,10 @@ function Header() {
       <div className='img-center'>
         <img src='/logo.svg' width={50} height={50}></img>
       </div>
-
+      <div className='text-blue-600'>
+        <p>Regno: 12318621 Name: Souravjyoti dutta</p>
+      </div>
       <div className='space-x-2'>
-
-        <Link to={'home/createResume'}>
-          <Button>Create New</Button>
-        </Link>
 
         <Link to={'/'}>
           <Button>Dashboard</Button>
