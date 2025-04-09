@@ -1,5 +1,5 @@
 import React, { useContext,useState } from 'react';
-import { ResumeContext } from '../../../context/ResumeContext';
+//import { ResumeContext } from '../../../context/ResumeContext';
 import { Button } from "../../components/ui/button"
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
@@ -22,7 +22,7 @@ function FormSection() {
 
           {sectionindex>1 && <Button onClick={()=>setsectionindex(curr => curr - 1)} >  <ArrowLeft />Prev</Button>}{/**1 */}
 
-          <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>
+          {sectionindex<5 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>}
           
         </div>
       </div>
