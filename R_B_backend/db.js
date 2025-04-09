@@ -71,11 +71,10 @@ const ResumeSchema = new Schema({
     {
       
       universityName: { type: String },
+      degree: { type: String },
       startDate: { type: String },
       endDate: { type: String },
-      degree: { type: String },
-      major: { type: String },
-      description: { type: String }
+      
     }
   ],
 

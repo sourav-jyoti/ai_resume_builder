@@ -19,8 +19,7 @@ export default function ExperiencePreview() {
               {experience?.companyName}, {experience?.city}, {experience?.state}
               <span>
                 {experience?.startDate}
-                {(experience?.currentlyWorking || experience?.endDate !== '') && experience?.startDate !== '' && ' To '} 
-                {/**makes sure to is displayed only when experience is != '' */}
+                {(experience?.currentlyWorking || experience?.endDate !== '') && experience?.startDate !== '' && ' To '} {/**makes sure to is displayed only when experience is != '' */}
                 {experience?.currentlyWorking ? 'Present' : experience?.endDate}</span>
             </h2>
             <p className='text-sm mt-1'>

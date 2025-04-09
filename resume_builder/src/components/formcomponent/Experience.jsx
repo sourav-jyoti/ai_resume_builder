@@ -48,7 +48,7 @@ export default function Experience({ setEnableNext }) {
 
   const RemoveExperience = () => {
     const updatedExperience = [...(resumedata.experience || [])];
-  
+
     if (updatedExperience.length > 0) {
       updatedExperience.pop(); // Remove the last item //next update remove button should be with each section
       setresumedata({
@@ -92,13 +92,13 @@ export default function Experience({ setEnableNext }) {
   };
 
   const onSave = () => {
-    if (resumedata?.experience?.length > 0){
+    if (resumedata?.experience?.length > 0) {
       uploaddata();
     }
-    else{
+    else {
       toast("enter at least 1 experience before saving")
     }
-    
+
   }
 
   const uploaddata = async () => {
