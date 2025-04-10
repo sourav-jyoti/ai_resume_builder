@@ -12,7 +12,7 @@ const app = express();
 //midlleware allowing 5173
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? "https://ai-resume-builder-front.onrender.com"
+    ? "process.env.FRONTEND_URL "
     : "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE",
 })); 
