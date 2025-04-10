@@ -7,7 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {chatSession} from '../../google/Aimodel'
-
+import { API_URL } from '../../../config';
 
 export default function Summery({ setEnableNext }) {
   const { resumedata,setresumedata} = useContext(ResumeContext);
@@ -31,7 +31,7 @@ export default function Summery({ setEnableNext }) {
   const uploaddata = async () => {
     setloading(true);
     try {
-      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, {
+      const response = await axios.put(`${API_URL}/user/resumes/${resumeid}`, {
         summery: resumedata.summery,
       });
 

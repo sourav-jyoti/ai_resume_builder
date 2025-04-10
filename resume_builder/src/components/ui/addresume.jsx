@@ -1,5 +1,5 @@
 import React ,{useState} from 'react'
-
+import { API_URL } from '../../../config';
 import { Loader2, PlusSquare } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -18,7 +18,7 @@ function Addresume() {
     const oncreate = async () => {
         setloading(true);
         try {
-            const response = await axios.post("http://localhost:3000/user/resumes", { 
+            const response = await axios.post(`${API_URL}/user/resumes`, { 
                 title: resumeTitle 
             });
     

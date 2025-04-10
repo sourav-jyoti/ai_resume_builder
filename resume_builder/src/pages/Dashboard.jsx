@@ -3,7 +3,7 @@ import axios from 'axios';
 import AddResume from '../components/ui/addresume';
 import Resumecard from '../components/ui/resumecard';
 import { LoaderCircle } from 'lucide-react';
-
+import { API_URL } from '../../config';
 
 
 function Dashboard() {
@@ -15,7 +15,7 @@ function Dashboard() {
 
     const getAllresume = async () => {
       try{
-        const response = await axios.get("http://localhost:3000/resumes");
+        const response = await axios.get(`${API_URL}/resumes`);
         setresumes(response.data);
         setload(false);
       }catch(e){

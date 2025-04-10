@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from "sonner"
 import axios from 'axios';
+import { API_URL } from '../../../config';
 
 function PersonalDetail({ setEnableNext }) {
   const { resumedata, setresumedata } = useContext(ResumeContext);
@@ -16,7 +17,7 @@ function PersonalDetail({ setEnableNext }) {
   const uploaddata = async () => {
     setloading(true);
     try {
-      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, resumedata);
+      const response = await axios.put(`${API_URL}/user/resumes/${resumeid}`, resumedata);
 
       if(response.status === 200){
         setloading(false);

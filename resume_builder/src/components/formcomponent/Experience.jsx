@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { chatSession } from '../../google/Aimodel'
 import { toast } from 'sonner'
 import { LoaderCircle } from 'lucide-react'
+import { API_URL } from '../../../config';
 
 export default function Experience({ setEnableNext }) {
   const { resumedata, setresumedata } = useContext(ResumeContext);
@@ -105,7 +106,7 @@ export default function Experience({ setEnableNext }) {
     setEnableNext(true);//when the first save happens next button appears
     setloading(true);
     try {
-      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, {
+      const response = await axios.put(`${API_URL}/user/resumes/${resumeid}`, {
         experience: resumedata.experience,
       });
 

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner'
 import { LoaderCircle } from 'lucide-react'
+import { API_URL } from '../../../config';
 
 function Educational({ setEnableNext }) {
   const { resumedata, setresumedata } = useContext(ResumeContext);
@@ -75,7 +76,7 @@ function Educational({ setEnableNext }) {
     setEnableNext(true);//when the first save happens next button appears
     setloading(true);
     try {
-      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, {
+      const response = await axios.put(`${API_URL}/user/resumes/${resumeid}`, {
         education: resumedata.education,
       });
 

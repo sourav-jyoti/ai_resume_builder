@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import FormSection from "../../components/ui/FormSection";
 import ResumePreview from "../../components/ui/ResumePreview";
-
+import { API_URL } from '../../../config';
 import {ResumeContext} from "../../../context/ResumeContext";
 
 // import dummy from "../../../dummydata"; 
@@ -18,7 +18,7 @@ const ResumeProvider = ({ children }) => {
   useEffect(() => {
     const fetchResume = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/user/resumes/${resumeid}`);
+        const response = await axios.get(`${API_URL}/user/resumes/${resumeid}`);
         setresumedata(response.data);
       } catch (error) {
         

@@ -7,6 +7,7 @@ import { LoaderCircle } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { chatSession } from '../../google/Aimodel'
+import { API_URL } from '../../../config';
 
 function Skills() {
   const { resumedata, setresumedata } = useContext(ResumeContext);
@@ -37,7 +38,7 @@ function Skills() {
   const uploaddata = async () => {
     setloading(true);
     try {
-      const response = await axios.put(`http://localhost:3000/user/resumes/${resumeid}`, {
+      const response = await axios.put(`${API_URL}/user/resumes/${resumeid}`, {
         skills: resumedata.skills,
       });
 

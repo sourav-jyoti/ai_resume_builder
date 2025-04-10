@@ -11,9 +11,22 @@ const app = express();
 
 //midlleware allowing 5173
 app.use(cors({
-  origin: "http://localhost:5173", // Allow only frontend
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.FRONTEND_URL 
+    : "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE",
-}));
+})); 
+{/**
+process.env.NODE_ENV === 'production'
+This checks the current environment of your Node.js application.
+
+process.env.NODE_ENV is typically set to either:
+
+'development' (when you're working locally)
+
+'production' (when your app is deployed live on a server)
+
+So this condition is true if your app is running in production mode */}
 
 
 // Middleware to parse JSON request body
@@ -106,7 +119,12 @@ app.get("/resumes", async function (req, res) {
 })
 
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+//backend is running on port localhost:3000 locally and on port  when deployed
 
 
 
