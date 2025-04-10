@@ -1,7 +1,7 @@
 import React, { useState,useContext } from 'react';
 import { ResumeContext } from '../../../context/ResumeContext';
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { useParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from "sonner"

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ResumeContext } from '../../../context/ResumeContext';
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { LoaderCircle } from 'lucide-react';

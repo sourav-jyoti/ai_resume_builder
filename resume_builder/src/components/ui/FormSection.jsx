@@ -1,6 +1,6 @@
 import React, { useContext,useState } from 'react';
 //import { ResumeContext } from '../../../context/ResumeContext';
-import { Button } from "../../components/ui/button"
+import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import Educational from "../formcomponent/Educational";
