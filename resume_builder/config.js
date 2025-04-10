@@ -1,5 +1,5 @@
 const REACT_APP_API_URL = 'https://ai-resume-builder-back-bewo.onrender.com'//backened render url
-const NODE_ENV = 'local'
+const NODE_ENV = 'production'
 
 export const API_URL = NODE_ENV === 'production'
   ? REACT_APP_API_URL
