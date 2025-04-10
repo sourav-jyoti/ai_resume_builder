@@ -25,6 +25,7 @@ async function connectToDatabase() {
     console.log(" MongoDB connected");
   } catch (err) {
     console.error(" MongoDB connection error:", err);
+    process.exit(1); // Exit if DB connection fails
   }
 }
 
@@ -100,7 +101,8 @@ app.get("/resumes", async function (req, res) {
     const resumes = await ResumeModel.find();
     res.json(resumes);
   } catch (err) {
-    res.status(500).json({ error: "Server error" });
+    console.error("Error fetching resumes:", err); // Log the full error
+    res.status(500).json({ error: "Server error", details: err.message });
   }
 })
 
