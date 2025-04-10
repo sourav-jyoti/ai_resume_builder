@@ -15,6 +15,7 @@ app.use(cors({
   methods: "GET,POST,PUT,DELETE",
 }));
 
+
 // Middleware to parse JSON request body
 app.use(express.json());
 
@@ -25,13 +26,11 @@ async function connectToDatabase() {
     console.log(" MongoDB connected");
   } catch (err) {
     console.error(" MongoDB connection error:", err);
-    process.exit(1); // Exit if DB connection fails
+    process.exit(1); // Exit from entire index.js if DB connection fails
   }
 }
 
 connectToDatabase();
-
-
 
 
 //router endpoints
