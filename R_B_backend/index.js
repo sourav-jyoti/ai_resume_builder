@@ -29,7 +29,7 @@ process.env.NODE_ENV is typically set to either:
 So this condition is true if your app is running in production mode */}
 
 
-// Middleware to parse JSON request body
+// Middleware to parse JSON request body // express doesnot know how to interpret the coming json data if we don't write this line req.body will be undefined
 app.use(express.json());
 
 
