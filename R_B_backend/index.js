@@ -11,11 +11,11 @@ const app = express();
 
 //midlleware allowing 5173
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
+  origin: process.env.NODE_ENV === 'production'
     ? process.env.FRONTEND_URL
     : "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE",
-})); 
+}));
 {/**
 process.env.NODE_ENV === 'production'
 This checks the current environment of your Node.js application.
@@ -43,90 +43,91 @@ async function connectToDatabase() {
   }
 }
 
-connectToDatabase();
-
 
 //router endpoints
+{/** aa. */ }
 
-//a new resume is created using title and time of creation
+async function startServer() {
+  await connectToDatabase(); // Wait for DB connection
+  app.post("/user/resumes", async function (req, res) {
+    try {
+      const { title } = req.body;
+      if (!title) return res.status(400).json({ error: "Title is required" });
 
-app.post("/user/resumes", async function (req, res) {
-  try {
-    const { title } = req.body;
-    if (!title) return res.status(400).json({ error: "Title is required" });
+      const newResume = await ResumeModel.create({ title });
 
-    const newResume = await ResumeModel.create({ title });
+      res.status(201).json({ _id: newResume._id });
 
-    res.status(201).json({ _id: newResume._id });
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-
-//fetched using id to edit the resume
-app.get("/user/resumes/:id", async (req, res) => {
-  try {
-
-    const resume = await ResumeModel.findById(req.params.id);
-    //GET /user/resumes/12345 nodejs extracts 12345 from the url and params is responsible for it
-    if (!resume) return res.status(404).json({ error: 'Resume not found' });
-
-    res.json(resume);
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-})
-
-//updated the resume with data
-app.put("/user/resumes/:id", async function (req, res) {
-  try {
-    const updateData = req.body;
-
-    // Check if the resume exists first
-    const existingResume = await ResumeModel.findById(req.params.id);
-    if (!existingResume) {
-      return res.status(404).json({ error: "Resume not found" });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-
-    // Update the existing resume
-    const updatedResume = await ResumeModel.findByIdAndUpdate(
-      req.params.id,
-      { $set: updateData},//dynamically adds key value pair based on the frontend data
-      { new: true }
-    );
-
-    res.status(200).json({ message: "Resume updated successfully", updatedResume });
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-})
+  });
 
 
-//dashboard gets all resumes
-app.get("/resumes", async function (req, res) {
-  
-  try {
-    const resumes = await ResumeModel.find();
-    res.json(resumes);
-  } catch (err) {
-    console.error("Error fetching resumes:", err); // Log the full error
-    res.status(500).json({ error: "Server error", details: err.message });
-  }
-})
+  //fetched using id to edit the resume
+  app.get("/user/resumes/:id", async (req, res) => {
+    try {
+
+      const resume = await ResumeModel.findById(req.params.id);
+      //GET /user/resumes/12345 nodejs extracts 12345 from the url and params is responsible for it
+      if (!resume) return res.status(404).json({ error: 'Resume not found' });
+
+      res.json(resume);
+
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  })
+
+  //updated the resume with data
+  app.put("/user/resumes/:id", async function (req, res) {
+    try {
+      const updateData = req.body;
+
+      // Check if the resume exists first
+      const existingResume = await ResumeModel.findById(req.params.id);
+      if (!existingResume) {
+        return res.status(404).json({ error: "Resume not found" });
+      }
+
+      // Update the existing resume
+      const updatedResume = await ResumeModel.findByIdAndUpdate(
+        req.params.id,
+        { $set: updateData },//dynamically adds key value pair based on the frontend data
+        { new: true }
+      );
+
+      res.status(200).json({ message: "Resume updated successfully", updatedResume });
+
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  })
 
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+  //dashboard gets all resumes
+  app.get("/resumes", async function (req, res) {
 
+    try {
+      const resumes = await ResumeModel.find();
+      res.json(resumes);
+    } catch (err) {
+      console.error("Error fetching resumes:", err); // Log the full error
+      res.status(500).json({ error: "Server error", details: err.message });
+    }
+  })
+
+
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+
+}
 //backend is running on port localhost:3000 locally and on port  when deployed
 
-
+// Run the server
+startServer();
 
 
 /**write line 22-24 in vanilla style

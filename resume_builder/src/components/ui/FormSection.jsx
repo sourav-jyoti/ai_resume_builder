@@ -22,7 +22,7 @@ function FormSection() {
 
           {sectionindex>1 && <Button onClick={()=>setsectionindex(curr => curr - 1)} >  <ArrowLeft />Prev</Button>}{/**1 */}
 
-          {sectionindex<5 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>} {/**makes sure the next button is not vissible in the last page */}
+          {sectionindex<6 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>} {/**makes sure the next button is not vissible in the last page */}
           
         </div>
       </div>
@@ -31,7 +31,8 @@ function FormSection() {
       {sectionindex == 2 &&<Summery setEnableNext={setEnableNext}/>}
       {sectionindex == 3 &&<Experience setEnableNext={setEnableNext}/>}
       {sectionindex == 4 && <Educational setEnableNext={setEnableNext}/>}
-      {sectionindex == 5 &&<Skills />}
+      {sectionindex == 5 &&<Skills setEnableNext={setEnableNext}/>}
+      {sectionindex == 6 && <Printresemu />}
 
     </div>
 
