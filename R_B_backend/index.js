@@ -9,29 +9,17 @@ const { ResumeModel } = require("./db");
 
 const app = express();
 
-//midlleware allowing 5173
+//1
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
     ? process.env.FRONTEND_URL
     : "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE",
 }));
-{/**
-process.env.NODE_ENV === 'production'
-This checks the current environment of your Node.js application.
 
-process.env.NODE_ENV is typically set to either:
-
-'development' (when you're working locally)
-
-'production' (when your app is deployed live on a server)
-
-So this condition is true if your app is running in production mode */}
-
-
-// Middleware to parse JSON request body // express doesnot know how to interpret the coming json data if we don't write this line req.body will be undefined
+//2
+//3
 app.use(express.json());
-
 
 async function connectToDatabase() {
   try {
@@ -43,10 +31,8 @@ async function connectToDatabase() {
   }
 }
 
-
 //router endpoints
-{/** aa. */ }
-
+// commit msg
 async function startServer() {
   await connectToDatabase(); // Wait for DB connection
   app.post("/user/resumes", async function (req, res) {
@@ -122,12 +108,30 @@ async function startServer() {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
-
-}
 //backend is running on port localhost:3000 locally and on port  when deployed
+}
+
+
 
 // Run the server
 startServer();
+
+
+
+{
+  /**
+   * 1. midlleware allowing 5173
+   * 
+   * 2.process.env.NODE_ENV === 'production'
+        This checks the current environment of your Node.js application.
+        process.env.NODE_ENV is typically set to either:
+        'development' (when you're working locally)
+        'production' (when your app is deployed live on a server)
+        So this condition is true if your app is running in production mode 
+    *
+    *3. Middleware to parse JSON request body // express doesnot know how to interpret the coming json data if we don't write this line req.body will be undefined
+   */
+}
 
 
 /**write line 22-24 in vanilla style
