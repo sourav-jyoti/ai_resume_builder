@@ -12,6 +12,37 @@
   margin-bottom: 0.25rem;
 }
 
+/* to print only the resumePreview area*/
+@media print {
+  body * {
+    visibility: hidden;
+    box-shadow: none;
+  }
+
+  body {
+    margin:0;
+    padding:0;
+   
+  }
+  #print-area, #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+}
+@page{
+  size:auto;
+  margin:0mm;
+}
+
+/* '" */
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

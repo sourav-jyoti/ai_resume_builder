@@ -12,6 +12,7 @@ import {ResumeContext} from "../../../context/ResumeContext";
 
 // Context Provider Wrapper Component
 const ResumeProvider = ({ children }) => {
+
   const [resumedata, setresumedata] = useState(null);
   const { resumeid } = useParams();//1
 
@@ -20,9 +21,7 @@ const ResumeProvider = ({ children }) => {
       try {
         const response = await axios.get(`${API_URL}/user/resumes/${resumeid}`);
         setresumedata(response.data);
-      } catch (error) {
-        
-        
+      } catch (error) {   
       }
     };
 
@@ -30,7 +29,7 @@ const ResumeProvider = ({ children }) => {
   }, []);
 
   return (
-    <ResumeContext.Provider value={{ resumedata, setresumedata }}>
+    <ResumeContext.Provider value={{resumedata, setresumedata}}>
       {children}
     </ResumeContext.Provider>
   );
@@ -44,7 +43,7 @@ function EditResume() {
       <ResumeProvider>
         <FormSection />
         <ResumePreview />
-        {/* <Toaster position="top-right" richColors /> //not needed as i have added Toaster in app.jsx directly in the root*/}
+        {/** 4. */}
       </ResumeProvider>
     </div>
   );
@@ -58,7 +57,7 @@ export default EditResume;
 {/*1. i have to extract the id from the address when page loads and it should be only once when it loads i.e when the id changes so use useeffect*/}
 {/* 2. write clear function logic in useEffect if needed */}
 {/* 3. Pass setresumedata to update resume in real-time */}
- 
+{/** 4. <Toaster position="top-right" richColors /> //not needed as i have added Toaster in app.jsx directly in the root */}
 
 
 

@@ -11,9 +11,7 @@ const app = express();
 
 //1
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? process.env.FRONTEND_URL
-    : "http://localhost:5173",
+  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : "http://localhost:5173",
   methods: "GET,POST,PUT,DELETE",
 }));
 

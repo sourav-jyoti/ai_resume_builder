@@ -8,6 +8,7 @@ import Experience from "../formcomponent/Experience";
 import PersonalDetail from "../formcomponent/PersonalDetail";
 import Skills from "../formcomponent/Skills"
 import Summery from "../formcomponent/Summery"
+import Printresume from "../formcomponent/Printresume"
 
 function FormSection() {
 
@@ -20,9 +21,10 @@ function FormSection() {
         <Button variant="outline">Theme</Button>
         <div className='flex gap-1'> 
 
-          {sectionindex>1 && <Button onClick={()=>setsectionindex(curr => curr - 1)} >  <ArrowLeft />Prev</Button>}{/**1 */}
+          {sectionindex >1 && <Button onClick={()=>setsectionindex(curr => curr - 1)} >  <ArrowLeft/>Prev </Button>}{/**1 */}
 
-          {sectionindex<6 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}><ArrowRight />Next</Button>} {/**makes sure the next button is not vissible in the last page */}
+          {sectionindex<6 && <Button disabled={!enableNext} onClick={()=>setsectionindex(curr => curr + 1 )}> <ArrowRight/>Next</Button>} 
+          {/**makes sure the next button is not vissible in the last page */}
           
         </div>
       </div>
@@ -32,7 +34,7 @@ function FormSection() {
       {sectionindex == 3 &&<Experience setEnableNext={setEnableNext}/>}
       {sectionindex == 4 && <Educational setEnableNext={setEnableNext}/>}
       {sectionindex == 5 &&<Skills setEnableNext={setEnableNext}/>}
-      {sectionindex == 6 && <Printresemu />}
+      {sectionindex == 6 && <Printresume/>}
 
     </div>
 
