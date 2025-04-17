@@ -18,7 +18,7 @@ function Skills() {
 
   //when textarea changes below code runs and the resumedata is updated
   useEffect(() => {
-    setresumedata({
+    skills && setresumedata({
       ...resumedata,
       skills: skills
     })
@@ -130,7 +130,7 @@ function Skills() {
           Generate from AI based on your experience
         </Button>
 
-        <Textarea onChange={(e) => setskills(e.target.value)} required value={convertHTMLToText(resumedata?.skills ?? '')} />
+        <Textarea onChange={(e) => setskills(e.target.value)} required value={convertHTMLToText( skills ?? resumedata?.skills ?? '')} />
 
       </div>
       <div>

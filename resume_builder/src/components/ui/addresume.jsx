@@ -1,75 +1,94 @@
-import React ,{useState} from 'react'
-import { API_URL } from '../../../config';
-import { Loader2, PlusSquare } from 'lucide-react'
+import React, { useState } from 'react'
+import { API_URL } from '../../../config'
+import { Loader2, FileText, Plus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 
-import axios from "axios";
+import axios from "axios"
 
+function AddResume() {
+    const [openDialog, setOpenDialog] = useState(false)
+    const [resumeTitle, setResumeTitle] = useState('')
+    const [loading, setLoading] = useState(false)
 
-function Addresume() {
-
-    const [opendialog, setopendialog]= useState(false);
-    const [resumeTitle, setresumetitle] = useState('');
-    const [loading, setloading] = useState(false);
-
-    const oncreate = async () => {
-        setloading(true);
+    const handleCreate = async () => {
+        setLoading(true)
         try {
             const response = await axios.post(`${API_URL}/user/resumes`, { 
                 title: resumeTitle 
-            });
+            })
     
-            if(response){
-                
-                setloading(false);
-                
-                // Redirect to the edit page using the received ID
-                window.location.href = `/${response.data._id}/EditResume`;
+            if(response) {
+                setLoading(false)
+                window.location.href = `/${response.data._id}/EditResume`
             }
-
         } catch (error) {
-            console.error("Error creating resume:", error.response?.data || error.message);
-            setloading(false);
+            console.error("Error creating resume:", error.response?.data || error.message)
+            setLoading(false)
         }
-    };
+    }
 
     return (
         <div>
-                <div className='p-14 py-24 border items-center flex justify-center bg-secondary rounded-lg h-[280px] w-[200px] hover:scale-105 transition-all hover:shadow-md' onClick={()=>setopendialog(true)}>
-                    <PlusSquare />
+            <div 
+                className="p-6 border-2 border-dashed border-primary/40 rounded-xl h-[280px] w-[200px] 
+                           bg-secondary/30 hover:bg-secondary/50 flex flex-col items-center justify-center gap-4
+                           transition-all hover:scale-103 hover:shadow-lg cursor-pointer group"
+                onClick={() => setOpenDialog(true)}
+            >
+                <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Plus className="h-8 w-8 text-primary" />
                 </div>
+                <div className="text-center">
+                    <p className="text-sm font-medium text-primary">Create New</p>
+                    <p className="text-xs text-muted-foreground">Add a resume</p>
+                </div>
+            </div>
             
-            {/* when opendialog is true i.e when when the above div is clicked it becomes true it triggers to open the dialog    and onOpenChange is responsible for setting the opendialog to false when X is clicked or anything outside the dialog box 
-            When opendialog is true, the dialog opens.
-            When the user clicks outside the dialog or presses the close button (❌), onOpenChange sets opendialog to false, closing the dialog. */}
-
-            <Dialog open={opendialog} onOpenChange={setopendialog}>
-                <DialogContent >
+            <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+                <DialogContent className="sm:max-w-md">
                     <DialogHeader>
-                        <DialogTitle>Add a title for your resume</DialogTitle>
+                        <DialogTitle className="flex items-center gap-2">
+                            <FileText className="h-5 w-5" />
+                            Create New Resume
+                        </DialogTitle>
                         <DialogDescription>
-                            <Input className='my-5' placeholder="ex: full stack resume" onChange={(e)=> setresumetitle(e.target.value)}/>
-                            {/* e = represents the event object. It contains information about the event that happened, including the input element itself.
-                            e.target = refers to the HTML element that triggered the event (the input box).
-                            e.target.value = retrieves the current value of the input field. */}
+                            Give your resume a title to help you identify it later.
                         </DialogDescription>
-                        <div>
-                            {/*disable create button if resumeTitle is empty*/}
-                            <Button disabled={!resumeTitle || loading} onClick={oncreate}>
-                                {loading ? <Loader2 className='animate-spin'/>:'Create'}
-                            </Button>
-
-                        </div>
                     </DialogHeader>
+                    
+                    <div className="py-4">
+                        <Input 
+                            className="focus-visible:ring-primary" 
+                            placeholder="e.g., Full Stack Developer Resume" 
+                            value={resumeTitle}
+                            onChange={(e) => setResumeTitle(e.target.value)}
+                            autoFocus
+                        />
+                    </div>
+                    
+                    <DialogFooter className="flex justify-between sm:justify-between">
+                        <Button 
+                            variant="outline" 
+                            onClick={() => setOpenDialog(false)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button 
+                            disabled={!resumeTitle || loading} 
+                            onClick={handleCreate}
+                            className="gap-1"
+                        >
+                            {loading ? <Loader2 className="h-4 w-4 animate-spin mr-1" /> : <Plus className="h-4 w-4 mr-1" />}
+                            Create Resume
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
-
-
         </div>
     )
 }
 
-export default Addresume
+export default AddResume
