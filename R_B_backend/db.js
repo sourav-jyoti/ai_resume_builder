@@ -39,7 +39,7 @@ const ResumeSchema = new Schema({
   themeColor: {
     type: String,
     trim: true,
-    default: "red",
+    default: "blue",
   },
 
   //summery
